@@ -1,0 +1,18 @@
+{
+	"name": "@dmail/task",
+	"version": "0.0.1",
+	"description": "Cancellable promise & more",
+	"dependencies": {
+		"@dmail/proto": "git+https://github.com/dmail/proto"
+	},
+	"devDependencies": {
+		"system-test": "git+https://github.com/dmail/system-test"
+	},
+	"scripts": {
+		"test": "system-test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dmail/task"
+	}
+}
