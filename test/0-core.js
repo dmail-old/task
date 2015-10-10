@@ -1,4 +1,4 @@
-import Task from './lib/task.js';
+import Task from '../index.js';
 
 export function suite(add){
 	add('task chaining complete propagation', function(test){
@@ -92,67 +92,12 @@ export function suite(add){
 		return test.resolveIn(task.then(), 100);
 	});
 
-	add('delay', function(test){
-		return test.resolveIn(Task.complete().delay(100), 100);
-	});
-
-	add('delay return value', function(test){
-		return test.resolveWith(Task.complete('foo').delay(100), 'foo');
-	});
-
-	add('delay cancellation', function(test){
-		return test.willTimeout(Task.complete().delay(10).cancel());
-	});
+	
 
 	add('timeout', function(test){
 		return test.rejectWith(Task.complete().delay(100).timeout(10), {code: 'TASK_TIMEOUT'});
 	});
 }
-
-/*
-exports['all'] = function(test, Task){
-	var task = Task.all([new Task(), 1, 2]);
-
-	task.tasks[0].complete(0);
-
-	test.resolveTo(task.then(String), '0,1,2');
-};
-
-exports['all cancellation'] = function(test, Task){
-	test.remainPending(Task.all([1, 2, 3]).cancel());
-};
-
-exports['all pausing / resuming'] = function(test, Task){
-	var task = Task.all([new Task(), 1, 2]);
-
-	task.pause();
-	setTimeout(function(){
-		task.resume();
-	}, 100);
-	task.tasks[0].complete('ok');
-
-	test.resolveIn(task, 100);
-};
-
-exports['all fail by consumer'] = function(test, Task){
-	var all = Task.all([new Task(), 2, 3]);
-	var tasks = all.tasks;
-
-	tasks[0].fail('foo');
-
-	test.resolveTo(all.catch(function(value){ return value; }), 'foo');
-};
-
-exports['all cancel by consumer'] = function(test, Task){
-	var all = Task.all([new Task(), 2, 3]);
-	var tasks = all.tasks;
-
-	tasks[0].cancel();
-	all.complete('foo');
-
-	test.remainPending(all);
-};
-*/
 
 /*
 Task.complete(10).then(function(){

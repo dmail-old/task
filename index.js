@@ -12,10 +12,6 @@ import call from './lib/call.js';
 // list helpers
 import all from './lib/all.js'; // rename parallel?
 import any from './lib/any.js'; 
-import map from './lib/map.js';
-import mapAny from './lib/map-any.js';
-import mapReduce from './lib/map-reduce.js';
-import pipe from './lib/pipe.js';
 import race from './lib/race.js';
 
 Task.prototype.delay = delay;
@@ -36,10 +32,6 @@ Task.call = call;
 
 Task.all = all;
 Task.any = any;
-Task.map = map;
-Task.mapAny = mapAny;
-Task.mapReduce = mapReduce;
-Task.pipe = pipe;
 Task.race = race;
 
 export default Task;
