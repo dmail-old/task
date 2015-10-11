@@ -18,14 +18,7 @@ Task.prototype.delay = delay;
 Task.prototype.finally = finallyMethod;
 Task.prototype.spread = spread;
 Task.prototype.time = time;
-Task.prototype.time = timeout;
-
-Task.timeout = function(ms, value){
-	return Task.complete(value).timeout(ms);
-};
-Task.delay = function(ms, value){
-	return Task.complete(value).delay(ms);
-};
+Task.prototype.timeout = timeout;
 
 Task.callback = callback;
 Task.call = call;
