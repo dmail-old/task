@@ -1,5 +1,6 @@
 import Task from '../index.js';
 
+/*
 export function suite(add){
 	add('all', function(test){
 		var task = Task.all([new Task(), 1, 2]);
@@ -44,3 +45,4 @@ export function suite(add){
 		return test.willTimeout(all);
 	});
 }
+*/

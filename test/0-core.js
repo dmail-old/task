@@ -1,7 +1,7 @@
 import Task from '../index.js';
 
 export function suite(add){
-	add('task chaining complete propagation', function(test){
+	/*add('task chaining complete propagation', function(test){
 		var taskA = new Task(), taskB = new Task();
 
 		taskA.chain(taskB);
@@ -21,12 +21,14 @@ export function suite(add){
 		test.equal(taskB.isPaused, false);
 	});
 
-	add('task insertion allow to return task to chain them', function(test){
-		var task = Task.complete(Task.complete('foo'));
+	add('lazy insertion', function(test){
+		var firstTask = new Task('first').complete('foo');
+		var secondTask = new Task('second').complete(firstTask);
 
-		test.equal(task.next != null, true);
+		test.equal(firstTask.isBefore(secondTask), true);
+		test.equal(secondTask.isAfter(firstTask), true);
 
-		return test.resolveWith(task, 'foo');
+		return test.resolveWith(secondTask, 'foo');
 	});
 
 	add('basic task dependency', function(test){
@@ -44,15 +46,25 @@ export function suite(add){
 			return error;
 		}), 'foo');
 	});
+*/
 
 	add('fail by consumer', function(test){
-		return test.resolveWith(Task.complete('foo').then(function(){
-			return Task.fail('bar');
-		}).catch(function(error){
+		var fooTask = new Task('foo').complete('foo');
+		var barTask = new Task('bar').fail('bar');
+		var task = fooTask.then(function anonymousCompletionTransformer(){
+			return barTask;
+		});
+
+		return test.rejectWith(task, 'bar');
+		/*
+		.catch(function anonymousFailureTransformer(error){
+			console.log('catched', error);
 			return error;
 		}), 'bar');
+*/
 	});
 
+	/*
 	add('cancel prevent completion', function(test){
 		return test.willTimeout(new Task().cancel().complete('foo'));
 	});
@@ -90,13 +102,12 @@ export function suite(add){
 		}, 100);
 
 		return test.resolveIn(task.then(), 100);
-	});
-
-	
+	});	
 
 	add('timeout', function(test){
 		return test.rejectWith(Task.complete().delay(100).timeout(10), {code: 'TASK_TIMEOUT'});
 	});
+*/
 }
 
 /*

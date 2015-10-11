@@ -1,5 +1,6 @@
 import Task from '../index.js';
 
+/*
 export function suite(add){
 	add('delay', function(test){
 		return test.resolveIn(Task.complete().delay(100), 100);
@@ -13,3 +14,4 @@ export function suite(add){
 		return test.willTimeout(Task.complete().delay(10).cancel());
 	});
 }
+*/
