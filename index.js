@@ -1,3 +1,8 @@
+/*
+une task en cours est un job, un job c'est Object.create(task)
+https://github.com/rpominov/fun-task
+*/
+
 import Task from './lib/task.js';
 
 // prototype extensions
@@ -11,7 +16,7 @@ import callback from './lib/callback.js';
 import call from './lib/call.js';
 // list helpers
 import all from './lib/all.js'; // rename parallel?
-import any from './lib/any.js'; 
+import any from './lib/any.js';
 import race from './lib/race.js';
 
 Task.prototype.delay = delay;
